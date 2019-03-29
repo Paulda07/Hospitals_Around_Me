@@ -1,29 +1,41 @@
-<!DOCTYPE html>
-<html>
-  <head>
-  	{% load static %}
-   <!--  <script src="js/{% static 'jss/ext.jss' %}.js"></script>
-
-      // This example requires the Places library. Include the libraries=places
-      // parameter when you first load the API. For example:
-      // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places --> -->
-           <script src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places&key=AIzaSyCUZr_tB1ctwnIDIujJAMvM3SCRGlAEefg"></script>
-    	<script src="{% static 'js/extern.js' %}"></script>
-
-       <body>
-    <div class="pac-card" id="pac-card">
-      <div>
-
-        <div id="pac-container">
-        <input id="pac-input" type="text"
-            placeholder="Enter a location">
-
-        </div>
+{% load static %}
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+<script type="text/javascript" src="{%static 'js/extern.js' %}"></script>
+<div class="pac-card" id="pac-card">
+  <div>
+    <div id="title">
+      Autocomplete search
     </div>
+    <div id="type-selector" class="pac-controls">
+      <input type="radio" name="type" id="changetype-all" checked="checked">
+      <label for="changetype-all">All</label>
 
-   
+      <input type="radio" name="type" id="changetype-establishment">
+      <label for="changetype-establishment">Establishments</label>
 
-    	
+      <input type="radio" name="type" id="changetype-address">
+      <label for="changetype-address">Addresses</label>
 
-  </body>
-</html> -->
+      <input type="radio" name="type" id="changetype-geocode">
+      <label for="changetype-geocode">Geocodes</label>
+    </div>
+    <div id="strict-bounds-selector" class="pac-controls">
+      <input type="checkbox" id="use-strict-bounds" value="">
+      <label for="use-strict-bounds">Strict Bounds</label>
+    </div>
+  </div>
+  <div id="pac-container">
+    <input id="pac-input" type="text"
+        placeholder="Enter a location">
+  </div>
+</div>
+<div id="map"></div>
+<div id="infowindow-content">
+  <img src="" width="16" height="16" id="place-icon">
+  <span id="place-name"  class="title"></span><br>
+  <span id="place-address"></span>
+</div>
+<!-- Replace the value of the key parameter with your own API key. -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCUZr_tB1ctwnIDIujJAMvM3SCRGlAEefg&libraries=places"></script>
