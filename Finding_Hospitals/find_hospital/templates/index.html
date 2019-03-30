@@ -2,32 +2,19 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
-<script type="text/javascript" src="{%static 'js/extern.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/extern.js' %}">
+		var lat = "{{lat}}";
+		var lng = "{{lng}}";
+</script>
 <div class="pac-card" id="pac-card">
   <div>
     <div id="title">
       Autocomplete search
     </div>
-    <div id="type-selector" class="pac-controls">
-      <input type="radio" name="type" id="changetype-all" checked="checked">
-      <label for="changetype-all">All</label>
-
-      <input type="radio" name="type" id="changetype-establishment">
-      <label for="changetype-establishment">Establishments</label>
-
-      <input type="radio" name="type" id="changetype-address">
-      <label for="changetype-address">Addresses</label>
-
-      <input type="radio" name="type" id="changetype-geocode">
-      <label for="changetype-geocode">Geocodes</label>
-    </div>
-    <div id="strict-bounds-selector" class="pac-controls">
-      <input type="checkbox" id="use-strict-bounds" value="">
-      <label for="use-strict-bounds">Strict Bounds</label>
-    </div>
+    
   </div>
   <div id="pac-container">
-    <input id="pac-input" type="text"
+    <input id="pac-input" type="text" name = 'Loc'
         placeholder="Enter a location">
   </div>
 </div>
@@ -36,6 +23,13 @@
   <img src="" width="16" height="16" id="place-icon">
   <span id="place-name"  class="title"></span><br>
   <span id="place-address"></span>
-</div>
+
+ <form action="" method="post">
+ 				{% csrf_token %}
+                <div>
+                    <button class="Find" name="Find" onclick="updateLatLng()">Find Hospitals</button>
+                    </div>
+</form>
 <!-- Replace the value of the key parameter with your own API key. -->
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCUZr_tB1ctwnIDIujJAMvM3SCRGlAEefg&libraries=places"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCUZr_tB1ctwnIDIujJAMvM3SCRGlAEefg&libraries=places&callback=initMap"
+        async defer></script>

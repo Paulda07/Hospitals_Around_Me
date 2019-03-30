@@ -1,13 +1,13 @@
-
+var lat
+var lng
 function initMap() {
-  var map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: -33.8688, lng: 151.2195},
-    zoom: 13
-  });
+  var place 
+   var map = new google.maps.Map(document.getElementById('map'), {
+     center: {lat: 0, lng: 0},
+    zoom: 2 
+  }); 
   var card = document.getElementById('pac-card');
   var input = document.getElementById('pac-input');
-  var types = document.getElementById('type-selector');
-  var strictBounds = document.getElementById('strict-bounds-selector');
 
   map.controls[google.maps.ControlPosition.TOP_RIGHT].push(card);
 
@@ -33,20 +33,30 @@ function initMap() {
   autocomplete.addListener('place_changed', function() {
     infowindow.close();
     marker.setVisible(false);
-    var place = autocomplete.getPlace();
+    place = autocomplete.getPlace();
     if (!place.geometry) {
       // User entered the name of a Place that was not suggested and
       // pressed the Enter key, or the Place Details request failed.
       window.alert("No details available for input: '" + place.name + "'");
       return;
     }
-
+    //document.getElementById('pac-input').value = place
     // If the place has a geometry, then present it on a map.
+      lat = place.geometry['location'].lat();
+      lng = place.geometry['location'].lng();  
+      // resp = updateLatLng(lat, lng);
+      console.log(place.geometry['location'].lat());
+      console.log(place.geometry['location'].lng());
+
+        
     if (place.geometry.viewport) {
       map.fitBounds(place.geometry.viewport);
     } else {
       map.setCenter(place.geometry.location);
-      map.setZoom(17);  // Why 17? Because it looks good.
+
+      
+
+      map.setZoom(10);  // Why 17? Because it looks good.
     }
     marker.setPosition(place.geometry.location);
     marker.setVisible(true);
@@ -66,23 +76,55 @@ function initMap() {
     infowindow.open(map, marker);
   });
 
-  // Sets a listener on a radio button to change the filter type on Places
-  // Autocomplete.
-  function setupClickListener(id, types) {
-    var radioButton = document.getElementById(id);
-    radioButton.addEventListener('click', function() {
-      autocomplete.setTypes(types);
-    });
-  }
 
-  setupClickListener('changetype-all', []);
-  setupClickListener('changetype-address', ['address']);
-  setupClickListener('changetype-establishment', ['establishment']);
-  setupClickListener('changetype-geocode', ['geocode']);
-
-  document.getElementById('use-strict-bounds')
-      .addEventListener('click', function() {
-        console.log('Checkbox clicked! New state=' + this.checked);
-        autocomplete.setOptions({strictBounds: this.checked});
-      });
+ //console.log(place)
 }
+
+function updateLatLng(lat, lng) {
+    var data = {'lati': lat, 'long': lng, csrfmiddlewaretoken: '{{ csrf_token }}'};
+    $.post('{% url "results" %}', data);
+    console.log(lat);
+      console.log(lng);
+    var response = '{{result}}';
+    return response
+};
+
+//     function csrfSafeMethod(method) {
+//         // these HTTP methods do not require CSRF protection
+//         return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+//       }
+
+//       $.ajaxSetup({
+//         beforeSend: function(xhr, settings) {
+//           if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+//             xhr.setRequestHeader("X-CSRFToken", "{{ csrf_token }}");
+//           }
+//         }
+//       });
+//       if (lat&&lng) {
+//       function now(position) {
+//             console.log('Position has been set successfully');
+            
+// dataToSend = {
+//               "fbpost": $("input[name=fb-post]").is(':checked'),
+//               "latitude": lat,
+//               "longitude": lng
+//             };
+
+//             $.ajax({
+//               type: "POST",
+//               dataType: 'json',
+//               url: "{% url 'index' %}",
+//               data: JSON.stringify(dataToSend),
+//               success: function (msg) {
+//                 console.log('Succeeded!');            
+//               },
+//               error: function (err) {
+//                 console.log('Error!');
+//               }
+//             });
+//           }, function (error) {
+//               console.log('Position could not be obtained.')
+//           };
+// }
+
