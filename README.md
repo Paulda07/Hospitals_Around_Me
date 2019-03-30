@@ -14,4 +14,7 @@ How to run:
 1. Clone and download the project 
 2. Link the given project with your database changing the database settings in settings.py
 3. Get your places API Key and assign it in views.py and other relevant places
-4. Go to command prompt and set the path to the folder
+4. Go to command prompt and set the path to the folder 'Finding_Hospitals
+5. Run python manage.py makemigrations
+6. Run python manage.py migrate
+7. Run python manage.py runserver
