@@ -6,7 +6,7 @@
   {% load static %}
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-   <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+   <link rel="stylesheet" type="text/css" href="{% static 'css/style1.css' %}">
 </head>
 <body>
 <div django-app="Hospitals">        
@@ -15,36 +15,23 @@
             <h1>Hospital finder</h1>
             <p class="tagline">Within 15 km</p>
             <form action="" method="post">
-            {% csrf_token %} <!-- csrf token for basic security -->
-               <!--  <div class="inputContainer">
-                    <input type="text" id="latitude" class="taskName" placeholder="What do you need to do?" name="latitude" required>
-                    <label for="latitude">Latitude</label>
-                </div>
-                <div class="inputContainer">
-                    <input type="text" id="longitude" class="taskName" placeholder="What do you need to do?" name="longitude" required>
-                    <label for="longitude">Longitude</label>
-                </div> -->
-
-                <!-- <div class="inputContainer half last right">
-                    <input type="datetime-local" id="dueDate" class="taskDate" name="date">
-                    <label for="dueDate">Date and Time</label>
-                    
-                    
-                </div>
-                <div class="row"> -->
-                   <!-- <button class="search" name="search" type="submit"><i class="fa fa-plus icon"></i>search</button> -->
-                <!--     <button class="taskDelete" name="taskDelete" formnovalidate="" type="submit" onclick="$('input#sublist').click();"><i class="fa fa-trash-o icon"></i>Delete Tasks</button>
-                </div> --> -->
+            {% csrf_token %} 
           <ul class="places">
-            {% for y in places %} 
-                  <li class="taskItem">
-                    <input type="checkbox" class="taskCheckbox" name="checkedbox" id="{{ y.id }}" value="{{ y.id }}">
-                    <label for="{{ y.id }}"><span class="complete-">{{ y.name }}</span></label>
-                  </li>
+            {% for y in objs %} 
+                 <li class="hospital">
+
+                    <label for="{{ y.id }}"><span class="complete-">{{ y.name }}</span></label><br>
+
+                    <span class="category-{{ y.contact }}">{{ y.contact }}</span><br>
+                    <strong class="taskDate">{{ y.address }}</strong>
+
+
+
+                </li> 
             {% endfor %}
-            </ul>  -->
+            </ul> 
             </form>
-            </div><!-- content --> -->
+            </div><!-- content -->
  </div><!-- container -->
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

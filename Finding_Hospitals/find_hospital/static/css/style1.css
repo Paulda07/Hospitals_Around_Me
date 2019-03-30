@@ -1,0 +1,111 @@
+/* basic reset */
+*, *:before, *:after {
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+}
+/* app */
+html {
+    font-size: 100%;
+}
+body {
+    background: #b1f6cb;
+    font-family: 'Open Sans',sans-serif;
+}
+/* super basic grid structure */
+.container {
+    width: 1000px;
+    margin: 0 auto;
+    background: #ffffff;
+    padding: 20px 0;
+    -webkit-box-shadow: 0 0 2px rgba(0,0,0,0.2);
+            box-shadow: 0 0 2px rgba(0,0,0,0.2);
+}
+
+.content {
+    background: #fff;
+}
+/* logo */
+h1 {
+    font-family: 'Rokkitt', sans-serif;
+    color: #666;
+    text-align: center;
+    font-weight: 400;
+    margin: 0;
+}
+.tagline {
+    margin-top: -10px;
+    text-align: center;
+    padding: 5px 20px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #777; 
+}
+
+
+.inputContainer label {
+    padding: 5px 20px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: 'black';
+    display: block;
+    position: absolute;
+}
+
+
+
+/* task styles */
+.places {
+    list-style: none;
+    padding: 0 20px;
+}
+.hospital {
+    border-top: 1px solid #e5e5e5;
+    padding: 15px 0;
+    color: 'black';
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+}
+.places .hospital:nth-child(even) {
+    background: #fcfcfc;
+}
+
+.complete- {
+    
+    color: black;
+}
+
+
+}
+[class*='category-'] {
+    display: inline-block;
+    font-size: 10px;
+    background: #444;
+    vertical-align: middle;
+    color: #fff;
+    padding: 10px;
+    width: 75px;
+    text-align: center;
+    border-radius: 2px;
+    float: right;
+    font-weight: normal;
+    text-transform: uppercase;
+    margin-right: 20px;
+}
+
+footer {
+    text-align: center;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #777;
+}
+footer a {
+    color: #f39c12;
+}
+
+
+
